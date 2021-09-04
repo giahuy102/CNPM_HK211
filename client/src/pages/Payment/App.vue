@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="../../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <h1>Tra tien nao cac ban oi</h1>
+    <h1>haaaaaa</h1>
   </div>
 </template>
 
@@ -10,7 +11,7 @@
 import HelloWorld from '../../components/HelloWorld.vue'
 
 export default {
-  name: 'App',
+  name: 'Payment',
   components: {
     HelloWorld
   }
