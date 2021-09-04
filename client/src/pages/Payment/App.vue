@@ -2,8 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="../../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <h1>Chao cac ban than yeu</h1>
-    <a href="payment.html">Go to payment</a>
+    <h1>Tra tien nao</h1>
   </div>
 </template>
 

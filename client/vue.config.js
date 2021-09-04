@@ -7,5 +7,12 @@ module.exports = {
             title: "Menu",
             chunks: ["chunk-vendors", "chunk-common", "index"],
         },
+        payment: {
+            entry: "./src/pages/Payment/main.js",
+            template: "public/index.html",
+            filename: "payment.html",
+            title: "Payment",
+            chunks: ["chunk-vendors", "chunk-common", "index"],
+        },
     },
 };
