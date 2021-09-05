@@ -2,23 +2,36 @@
   <div class="b-container fluid" id="app">
     <b-row>
       <b-col lg="9">
-        <TopNavBar/>
+        <top-nav-bar/>
+        <category-item/>
+        <VueSlickCarousel :arrows="true" :dots="true">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+        </VueSlickCarousel>
       </b-col>
       <b-col lg="3">
 
       </b-col> 
     </b-row>
+
   </div>
 </template>
 
 <script>
 import TopNavBar from "../../components/TopNavBar.vue";
+import CategoryItem from "../../components/CategoryItem.vue";
+import VueSlickCarousel from 'vue-slick-carousel'
 import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
+
 
 export default {
   name: 'Menu',
   components: {
-    TopNavBar
+    TopNavBar,
+    CategoryItem,
+    VueSlickCarousel
   },
   data() {
     return {
