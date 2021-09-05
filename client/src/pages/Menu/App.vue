@@ -1,19 +1,52 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="../../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <h1>Chao cac ban than yeu</h1>
-    <a href="payment.html">Go to payment</a>
+  <div class="b-container fluid" id="app">
+    <b-row>
+      <b-col cols="9">
+        <TopNavBar/>
+      </b-col>
+      <b-col cols="3">
+
+      </b-col> 
+    </b-row>
   </div>
 </template>
 
 <script>
-import HelloWorld from '../../components/HelloWorld.vue'
+import TopNavBar from "../../components/TopNavBar.vue";
+import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
 
 export default {
   name: 'Menu',
   components: {
-    HelloWorld
+    TopNavBar
+  },
+  data() {
+    return {
+      foods: [],
+      numberOfFoods: 0,
+      foodCategories: [],
+      numberOfFoodCategories: 0
+    }
+  },
+  methods: {
+    getAllFoods() {
+      getAllFoods().then(response => {
+        this.foods = response;
+        this.numberOfFoods = this.foods.length;
+        console.log(this.foods);
+      })
+    },
+    getAllFoodCategories() {
+      getAllFoodCategories().then(response => {
+        this.foodCategories = response;
+        this.numberOfFoodCategories = this.foodCategories.length;
+        console.log(this.foodCategories);
+      })
+    }    
+  }, 
+  mounted() {
+    this.getAllFoods();
+    this.getAllFoodCategories();
   }
 }
 </script>
@@ -23,8 +56,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
