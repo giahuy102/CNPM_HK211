@@ -6,7 +6,7 @@ const foods = require("../services/food_categories");
 router.get("/api/food_categories", (req, res) => {
     try {
         foods.getAllFoodCategories(function(foodCategories) {
-            res.respond(foodCategories);
+            res.json(foodCategories);
         })
     }
     catch (err) {
