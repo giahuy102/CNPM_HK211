@@ -25,7 +25,7 @@ a {
     font-size: 20px;
     text-decoration: none;
     font-weight: 600;
-    color: black;
+    color: rgb(0, 0, 0);
     padding: 0;
 }
 
