@@ -1,17 +1,42 @@
 <template>
   <div class="b-container fluid" id="app">
     <b-row>
-      <b-col lg="9">
+      <b-col cols="9">
         <top-nav-bar/>
-        <category-item/>
-        <VueSlickCarousel :arrows="true" :dots="true">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-        </VueSlickCarousel>
+        <b-row align-h="center">
+          <b-col cols="11">
+            <VueSlickCarousel v-bind="settings" v-if="numberOfFoodCategories > 0">
+              <div
+                v-for="foodCategory in foodCategories"
+                :key="foodCategory.category_id"
+                @click="setFoodAndCategoryState(foodCategory.category_id)"
+              > 
+                <category-item
+                  v-bind:category-name="foodCategory.category_name"
+                  v-bind:source-img="foodCategory.image_name"
+                />
+              </div>
+              <!-- <template #nextArrow="arrowOption">
+                <div class="custom-arrow">
+                  {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
+                </div>
+              </template> -->
+
+            </VueSlickCarousel>
+          </b-col>
+        </b-row>
+          <h3
+            v-for="food in foodsOfCurrentCategory"
+            :key="food.food_category_id"
+          >
+            {{food.food_name}}
+          </h3>
+        <b-row>
+
+        </b-row>
+
       </b-col>
-      <b-col lg="3">
+      <b-col cols="3">
 
       </b-col> 
     </b-row>
@@ -38,10 +63,27 @@ export default {
       foods: [],
       numberOfFoods: 0,
       foodCategories: [],
-      numberOfFoodCategories: 0
+      numberOfFoodCategories: 0,
+      settings: {
+        "draggable": false,
+        "infinite": false,
+        "slidesToShow": 5,
+        "slidesToScroll": 1,
+
+      },
+      currenCategoryId: -1,
+      foodsOfCurrentCategory: []
     }
   },
   methods: {
+    setFoodAndCategoryState(currentCategoryId) {
+      this.currentCategoryId = currentCategoryId;
+      let temp = []
+      for (let food of this.foods) {
+        if (food.food_category_id == currentCategoryId) temp.push(food);
+      }
+      this.foodsOfCurrentCategory = temp;
+    },
     getAllFoods() {
       getAllFoods().then(response => {
         this.foods = response;
@@ -53,9 +95,15 @@ export default {
       getAllFoodCategories().then(response => {
         this.foodCategories = response;
         this.numberOfFoodCategories = this.foodCategories.length;
+        if (this.numberOfFoodCategories > 0) {
+          this.setFoodAndCategoryState(this.foodCategories[0].category_id);
+        } 
         console.log(this.foodCategories);
       })
-    }    
+    },
+    showNext() {
+      this.$refs.carousel.next()
+    }
   }, 
   mounted() {
     this.getAllFoods();
@@ -71,4 +119,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
 }
+
+button.slick-prev:before, button.slick-next:before {
+      background-color: red !important;
+}
+
 </style>

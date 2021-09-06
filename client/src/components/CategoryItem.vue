@@ -1,8 +1,8 @@
 <template>
-    <div class="card text-center" style="width: 10rem;">
-        <img class="card-img-top" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1557204172/banner_2.jpg" alt="Card image cap">
+    <div class="card text-center" style="width: 18rem;">
+        <img class="card-img-top center" :src="require(`../assets/categories/${sourceImg}`)"  alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <p class="card-title">{{ categoryName }}</p>
         </div>
     </div>
 </template>
@@ -12,13 +12,19 @@ export default {
     name: "CategoryItem",
     data() {
         return {
-            
+
         }
-    }
+    },
+    props: ["sourceImg", "categoryName"]
 
 }
 </script>
 
 <style scoped>
-
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 </style>
