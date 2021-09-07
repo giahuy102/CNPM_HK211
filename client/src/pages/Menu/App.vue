@@ -6,7 +6,8 @@
         <b-row align-h="center">
           <b-col cols="11">
             <VueSlickCarousel v-bind="settings" v-if="numberOfFoodCategories > 0">
-              <div
+              <div 
+                class="d-flex justify-content-center"
                 v-for="foodCategory in foodCategories"
                 :key="foodCategory.category_id"
                 @click="setFoodAndCategoryState(foodCategory.category_id)"
@@ -41,6 +42,7 @@
       </b-col> 
     </b-row>
 
+
   </div>
 </template>
 
@@ -67,7 +69,7 @@ export default {
       settings: {
         "draggable": false,
         "infinite": false,
-        "slidesToShow": 5,
+        "slidesToShow": 6,
         "slidesToScroll": 1,
 
       },
@@ -121,7 +123,20 @@ export default {
 }
 
 button.slick-prev:before, button.slick-next:before {
-      background-color: red !important;
+      background-color: rgb(134, 131, 131) !important;
+      height: 1px !important;
+
 }
+/* button.slick-prev:before {
+  content: "<";
+  color: black;
+  font-size: 30px;
+}
+
+button.slick-next:before {
+  content: ">";
+  color: black;
+  font-size: 30px;
+} */
 
 </style>
