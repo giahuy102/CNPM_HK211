@@ -10,7 +10,7 @@
                 class="d-flex justify-content-center"
                 v-for="foodCategory in foodCategories"
                 :key="foodCategory.category_id"
-                @click="setFoodAndCategoryState(foodCategory.category_id)"
+                @click="setFoodAndCategoryState(foodCategory.category_id, foodCategory.category_name)"
               > 
                 <category-item
                   v-bind:category-name="foodCategory.category_name"
@@ -26,14 +26,23 @@
             </VueSlickCarousel>
           </b-col>
         </b-row>
-          <h3
-            v-for="food in foodsOfCurrentCategory"
-            :key="food.food_category_id"
-          >
-            {{food.food_name}}
-          </h3>
-        <b-row>
 
+        
+        <b-row id="menu-foods">
+          <h2>{{currentCategoryName}}</h2>
+          <b-col
+            class="d-flex justify-content-center"
+            cols="4"
+            v-for="(food, index) in foodsOfCurrentCategory"
+            :key="food.food_id"
+          >
+            <food-item
+              v-bind:food-name="food.food_name"
+              v-bind:image-name="food.image_name"
+              v-bind:index="index"
+              v-bind:food-price="food.food_price"
+            />
+          </b-col>
         </b-row>
 
       </b-col>
@@ -49,6 +58,7 @@
 <script>
 import TopNavBar from "../../components/TopNavBar.vue";
 import CategoryItem from "../../components/CategoryItem.vue";
+import FoodItem from "../../components/FoodItem.vue";
 import VueSlickCarousel from 'vue-slick-carousel'
 import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
 
@@ -58,6 +68,7 @@ export default {
   components: {
     TopNavBar,
     CategoryItem,
+    FoodItem,
     VueSlickCarousel
   },
   data() {
@@ -73,12 +84,14 @@ export default {
         "slidesToScroll": 1,
 
       },
+      currentCategoryName: "",
       currenCategoryId: -1,
       foodsOfCurrentCategory: []
     }
   },
   methods: {
-    setFoodAndCategoryState(currentCategoryId) {
+    setFoodAndCategoryState(currentCategoryId, currentCategoryName) {
+      this.currentCategoryName = currentCategoryName;
       this.currentCategoryId = currentCategoryId;
       let temp = []
       for (let food of this.foods) {
@@ -98,7 +111,7 @@ export default {
         this.foodCategories = response;
         this.numberOfFoodCategories = this.foodCategories.length;
         if (this.numberOfFoodCategories > 0) {
-          this.setFoodAndCategoryState(this.foodCategories[0].category_id);
+          this.setFoodAndCategoryState(this.foodCategories[0].category_id, this.foodCategories[0].category_name);
         } 
         console.log(this.foodCategories);
       })
@@ -115,6 +128,11 @@ export default {
 </script>
 
 <style>
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -138,5 +156,9 @@ button.slick-next:before {
   color: black;
   font-size: 30px;
 } */
+
+#menu-foods {
+  margin-top: 40px;
+}
 
 </style>
