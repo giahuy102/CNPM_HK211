@@ -37,6 +37,7 @@
             :key="food.food_id"
           >
             <food-item
+              v-on:process-add-cart-item="processAddCartItem"
               v-bind:food-name="food.food_name"
               v-bind:image-name="food.image_name"
               v-bind:index="index"
@@ -47,11 +48,20 @@
 
       </b-col>
       <b-col cols="3">
-
+        <div class="d-flex justify-content-between">
+          <h4>
+            <i class="fas fa-shopping-cart"></i>
+            <span>Your cart ({{ currentNumberCartItems }})</span>
+          </h4>
+          <span>DINE IN</span>
+        </div>
+        <cart-item
+          v-for="(food, index) in foodsInCart"
+          :key="index"
+          v-bind:food-in-cart="food"
+        />
       </b-col> 
     </b-row>
-
-
   </div>
 </template>
 
@@ -59,8 +69,11 @@
 import TopNavBar from "../../components/TopNavBar.vue";
 import CategoryItem from "../../components/CategoryItem.vue";
 import FoodItem from "../../components/FoodItem.vue";
+import CartItem from "../../components/CartItem.vue";
 import VueSlickCarousel from 'vue-slick-carousel'
 import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
+
+// import Vue from 'vue'; 
 
 
 export default {
@@ -69,6 +82,7 @@ export default {
     TopNavBar,
     CategoryItem,
     FoodItem,
+    CartItem,
     VueSlickCarousel
   },
   data() {
@@ -86,8 +100,23 @@ export default {
       },
       currentCategoryName: "",
       currenCategoryId: -1,
-      foodsOfCurrentCategory: []
+      foodsOfCurrentCategory: [],
+      currentNumberCartItems: 0,
+      foodsInCart: [],
+
     }
+  },
+  watch: {
+    // foods: {
+      
+    //   handler() {
+    //     this.foodsInCart = this.foods.filter(element => {
+    //       return element.isInCart;
+    //     })
+    //     // console.log(this.foods[0].numberInCart);
+    //   },
+    //   deep: true
+    // }
   },
   methods: {
     setFoodAndCategoryState(currentCategoryId, currentCategoryName) {
@@ -102,7 +131,22 @@ export default {
     getAllFoods() {
       getAllFoods().then(response => {
         this.foods = response;
+        // console.log(this.foods);
+        // this.foods.forEach(element => {
+        //   Vue.set(element, "isInCart", false);
+        //   Vue.set(element, "numberInCart", 0);
+        //   // element.isInCart = false;
+        //   // element.numberInCart = 0;
+        // })
+        // Vue.set(this.foods, 0, Vue.set(this.foods[0], "isInCart", false));
+        // this.$set(this.foods[0], 'isInCart', false);
+        this.foods.forEach(element => {
+          this.$set(element, 'isInCart', false); //set new attribute of object vuejs
+          this.$set(element, 'numberInCart', 0);
+        })
+        console.log(this.foods[0].isInCart);
         this.numberOfFoods = this.foods.length;
+
         console.log(this.foods);
       })
     },
@@ -110,6 +154,7 @@ export default {
       getAllFoodCategories().then(response => {
         this.foodCategories = response;
         this.numberOfFoodCategories = this.foodCategories.length;
+
         if (this.numberOfFoodCategories > 0) {
           this.setFoodAndCategoryState(this.foodCategories[0].category_id, this.foodCategories[0].category_name);
         } 
@@ -118,6 +163,14 @@ export default {
     },
     showNext() {
       this.$refs.carousel.next()
+    },
+    processAddCartItem(index) {
+      this.currentNumberCartItems++;
+      if (!this.foodsOfCurrentCategory[index].isInCart) {
+        this.foodsOfCurrentCategory[index].isInCart = true;
+        this.foodsInCart.push(this.foodsOfCurrentCategory[index]);
+        console.log(this.foodsOfCurrentCategory[index].isInCart);
+      }
     }
   }, 
   mounted() {

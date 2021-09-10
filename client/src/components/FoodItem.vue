@@ -10,7 +10,7 @@
             </h5>
             <p class="card-text d-flex justify-content-between align-items-center">
                 <span class="content">{{foodPrice}}</span>
-                <span class="fa-stack fa-1x content">
+                <span class="fa-stack fa-1x content" @click="processAddCartItem">
                     <i class="fa fa-square fa-stack-2x icon-b"></i>
                     <i class="fas fa-shopping-cart fa-stack-1x fa-inverse icon-a"></i>
                 </span>
@@ -28,7 +28,9 @@ export default {
     },
     props: ["foodName", "imageName", "foodPrice", "index"],
     methods: {
-
+        processAddCartItem() {
+            this.$emit("process-add-cart-item", this.index);
+        }
     }
 }
 </script>
