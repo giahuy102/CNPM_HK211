@@ -42,6 +42,7 @@
               v-bind:image-name="food.image_name"
               v-bind:index="index"
               v-bind:food-price="food.food_price"
+              
             />
           </b-col>
         </b-row>
@@ -68,6 +69,11 @@
 
       </b-col> 
     </b-row>
+    <food-item-modal/>
+
+
+
+
   </div>
 </template>
 
@@ -76,8 +82,11 @@ import TopNavBar from "../../components/TopNavBar.vue";
 import CategoryItem from "../../components/CategoryItem.vue";
 import FoodItem from "../../components/FoodItem.vue";
 import CartItem from "../../components/CartItem.vue";
+import FoodItemModal from "../../components/FoodItemModal.vue";
+
 import VueSlickCarousel from 'vue-slick-carousel'
 import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
+
 
 // import Vue from 'vue'; 
 
@@ -89,7 +98,8 @@ export default {
     CategoryItem,
     FoodItem,
     CartItem,
-    VueSlickCarousel
+    VueSlickCarousel,
+    FoodItemModal
   },
   data() {
     return {
@@ -125,6 +135,10 @@ export default {
     // }
   },
   methods: {
+
+
+
+
     setFoodAndCategoryState(currentCategoryId, currentCategoryName) {
       this.currentCategoryName = currentCategoryName;
       this.currentCategoryId = currentCategoryId;
@@ -239,5 +253,11 @@ button.slick-next:before {
   /* for Firefox */
   min-height: 0;
 }
+
+
+#my-modal {
+  top: 25%;
+}
+
 
 </style>
