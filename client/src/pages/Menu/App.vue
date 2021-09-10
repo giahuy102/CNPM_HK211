@@ -2,7 +2,7 @@
   <div class="b-container fluid" id="app">
     <b-row>
       <b-col cols="9">
-        <top-nav-bar/>
+        <top-nav-bar/>  
         <b-row align-h="center">
           <b-col cols="11">
             <VueSlickCarousel v-bind="settings" v-if="numberOfFoodCategories > 0">
@@ -47,19 +47,25 @@
         </b-row>
 
       </b-col>
-      <b-col cols="3">
-        <div class="d-flex justify-content-between">
+      <!-- use d-flex flex-column for make scroll bar without setting predefined-height -->
+      <b-col id="side-bar" class="d-flex flex-column" cols="3">
+        <b-navbar class="d-flex justify-content-between nav" variant="faded" type="light">
           <h4>
             <i class="fas fa-shopping-cart"></i>
             <span>Your cart ({{ currentNumberCartItems }})</span>
           </h4>
           <span>DINE IN</span>
+
+        </b-navbar>
+        <div id="list-cart">
+          <cart-item
+            v-for="(food, index) in foodsInCart"
+            :key="index"
+            v-bind:food-in-cart="food"
+            v-bind:index="index"
+          />
         </div>
-        <cart-item
-          v-for="(food, index) in foodsInCart"
-          :key="index"
-          v-bind:food-in-cart="food"
-        />
+
       </b-col> 
     </b-row>
   </div>
@@ -210,8 +216,28 @@ button.slick-next:before {
   font-size: 30px;
 } */
 
+.nav {
+  min-height: 80px;
+  
+}
+
 #menu-foods {
   margin-top: 40px;
+}
+
+#side-bar {
+  height: 100vh;
+  position: fixed;
+  right: 0;
+
+}
+
+
+#list-cart {
+  overflow-y: auto;
+  
+  /* for Firefox */
+  min-height: 0;
 }
 
 </style>

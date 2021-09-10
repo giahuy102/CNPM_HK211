@@ -39,7 +39,7 @@ export default {
 
 .card {
     width: 65%;
-    height: 350px;
+    height: auto;
     margin: 10px auto;  
     border-radius: 5%; 
     cursor: pointer;

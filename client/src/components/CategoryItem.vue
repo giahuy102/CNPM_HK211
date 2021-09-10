@@ -1,5 +1,5 @@
 <template>
-    <div class="card text-center">
+    <div class="card text-center d-flex flex-column">
         <div class="d-flex align-items-center container-img">
             <img class="center" :src="require(`../assets/categories/${sourceImg}`)"  alt="Card image cap">
         </div>

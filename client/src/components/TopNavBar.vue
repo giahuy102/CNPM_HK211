@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-navbar variant="faded" type="light">
+        <b-navbar variant="faded" type="light" class="nav">
             <a href="#">
                 <!-- use stack icon to custom font-awesome -->
                 <span class="fa-stack fa-1x">
@@ -31,6 +31,10 @@ a {
 
 .icon-b {
     font-size: 20px;
+}
+
+.nav {
+    min-height: 80px;
 }
 
 
