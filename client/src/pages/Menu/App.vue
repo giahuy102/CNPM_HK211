@@ -227,6 +227,12 @@ button.slick-next:before {
   font-size: 30px;
 } */
 
+
+
+
+</style>
+
+<style scoped>
 .nav {
   min-height: 80px;
   
@@ -255,6 +261,4 @@ button.slick-next:before {
 #my-modal {
   top: 25%;
 }
-
-
 </style>

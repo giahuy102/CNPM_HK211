@@ -1,7 +1,5 @@
 <template>
     <div>
-    <b-button v-b-modal.modal-center>Launch centered modal</b-button>
-
     <b-modal ref="my-modal" hide-footer header-class="my-class" id="modal-center" centered>
         <template v-slot:modal-title>{{ foodItem.food_name }}</template>
         <template class="close-button" id="close-button" v-slot:modal-header-close>

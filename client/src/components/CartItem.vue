@@ -11,9 +11,12 @@
                     <span>{{ index + 1 + ". " }}</span>
                     <span>{{ foodInCart.food_name }}</span>
                 </h3>
-                <div>
-                    <p>{{ numberInCart }}</p>
-                </div>
+                <p>
+                    <i class="far fa-minus-square"></i>
+                    {{ numberInCart }}
+                    <i class="far fa-plus-square"></i>    
+                </p>
+                    
 
             </div>
             <div class="d-flex flex-column">

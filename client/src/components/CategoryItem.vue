@@ -38,6 +38,8 @@ export default {
     color: white;
 }
 
+
+
 .center {
     display: block;
     margin-left: auto;
