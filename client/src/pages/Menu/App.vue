@@ -38,11 +38,8 @@
           >
             <food-item
               v-on:process-add-cart-item="processAddCartItem"
-              v-bind:food-name="food.food_name"
-              v-bind:image-name="food.image_name"
               v-bind:index="index"
-              v-bind:food-price="food.food_price"
-              
+              v-bind:food-item="food"
             />
           </b-col>
         </b-row>

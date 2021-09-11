@@ -32,7 +32,8 @@ export default {
             numberInCart: 1
         }
     },
-    props: ["foodInCart", "index"]
+    props: ["foodInCart", "index"],
+
 }
 </script>
 

@@ -3,18 +3,24 @@
     <b-button v-b-modal.modal-center>Launch centered modal</b-button>
 
     <b-modal ref="my-modal" hide-footer header-class="my-class" id="modal-center" centered>
-        <template v-slot:modal-title>Hello</template>
+        <template v-slot:modal-title>{{ foodItem.food_name }}</template>
         <template class="close-button" id="close-button" v-slot:modal-header-close>
             <button type="button" class="btn-close" aria-label="Close"></button>
 
         </template>
-        <p class="my-4">Vertically centered modal!</p>
+        
     </b-modal>
     </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      foodItem: {}
+    }
+  },
+  methods: {
     showModal() {
       this.$refs['my-modal'].show()
     },
@@ -26,6 +32,14 @@ export default {
       // when the modal has hidden
       this.$refs['my-modal'].toggle('#toggle-btn')
     },
+  },
+
+  mounted() {
+      this.$root.$on("process-display-modal", foodItem => {
+        this.foodItem = foodItem;
+        this.showModal();
+      })
+  }
 }
 </script>
 
