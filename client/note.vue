@@ -28,8 +28,7 @@
                     <div id="item-inc">inc. VAT</div>
                 </div>
             </div>
-          
-          <div id="credit">
+            <div id="credit">
                 <div id="credit-above">
                     <div id="credit-above-noti">
                         Checkout is running in test mode. Click here for test data.
@@ -57,7 +56,45 @@
                 </div>
                 <div id="triangle"></div>
             </div>
-            
+            <form action="#" id="filling">
+                <!-- <input type="text" id="card-number" placeholder="Card number" size="50"><br><br> -->
+                <!-- <div id="card-number" class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">s</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Card number" aria-label="Username" aria-describedby="basic-addon1">
+                </div> -->
+                <label>
+                    <input id="card-icon" type="text" placeholder="Card number" size="37">
+                </label>
+  
+                <div id="identification">
+                    <div id="iden-left">
+                        <input type="text" placeholder="MM/YY" size="18">
+                    </div>
+                    <div id="iden-right">
+                        <!-- <input type="text" placeholder="CVV" size="18"> -->
+                        <span id="cvv"> <input type="text" placeholder="CVV" size="18"> </span>
+                    </div>
+                </div>
+                <!-- <button id="button-payment" type="button" class="btn btn-primary btn-block">Pay NOK 25.00</button> -->
+                <button id="button-payment" type="button">Pay NOK 25.00</button>
+            </form>
+            <div id="cancle">
+                <!-- <button id="button-cancle" type="button" class="btn btn-secondary btn-block">Cancle payment</button> -->
+                <button id="button-cancle" type="button"> <span id="text-cancle">Cancle payment </span></button>
+            </div>
+            <div id="footer">
+                <div id="footer-left">
+                    <a href="#">
+                        <img alt="Credit Card Logos" title="Credit Card Logos" src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png" width="25" height="15" border="0" />
+                    </a>
+                    <span id="dintero">Dintero </span> <span id="checkout">Checkout</span>
+                </div>
+                <div id="footer-right">
+                    <span id="terms">Terms</span> 
+                </div>
+            </div>
             
             
         </div>

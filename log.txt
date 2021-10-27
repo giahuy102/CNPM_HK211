@@ -1,0 +1,143 @@
+commit d1e5f60e2218c26fe050588dc86d50d6daba8ef8
+Author: Nhan Vo <57635231+nhanvo031001@users.noreply.github.com>
+Date:   Mon Oct 25 22:13:04 2021 +0700
+
+    update header payment
+
+commit ebf81be9dce15a1f3c165637e91f197781e29b61
+Author: Nhan Vo <57635231+nhanvo031001@users.noreply.github.com>
+Date:   Sun Nov 7 01:26:11 2021 +0700
+
+    update file json
+
+commit f4ac77704c494f761e58f84e9ac770db329cc53a
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Thu Nov 4 22:08:37 2021 +0700
+
+    improve code
+
+commit dd5da339d2f790957a276e15af2dc7dba759c36b
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 11 22:53:19 2021 +0700
+
+    fix
+
+commit 227bb0e1de437274c5729ebe4c3bc3be8d710e20
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 11 12:33:50 2021 +0700
+
+    modal-fixed
+
+commit 78d15f08284684bf19a6994e905ebe7ef8e93697
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 11 00:22:37 2021 +0700
+
+    backdrop
+
+commit 1e7e2bbc3aa3abce15cd0ebba351b86ba6cded88
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Fri Sep 10 18:45:14 2021 +0700
+
+    side-bar
+
+commit 79f0333426259c2108a8cf5d72ef710e5981a91f
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Fri Sep 10 11:30:47 2021 +0700
+
+    cart-fix
+
+commit 7993a59be4f67e0bbabdd69819e7509d60d1e136
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Thu Sep 9 12:00:09 2021 +0700
+
+    Food-item
+
+commit 3ba96e5b102332c36c5f6eefde9313debb6dd3e5
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Tue Sep 7 13:25:52 2021 +0700
+
+    slick-carousel
+
+commit ac7498f845983c341f0195995b81dd32c84adc9e
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Mon Sep 6 15:18:38 2021 +0700
+
+    slide_category
+
+commit ef559ec4c4ada385cc2ecf4d51ce62fbb1e6828b
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sun Sep 5 23:36:05 2021 +0700
+
+    client
+
+commit e857d87ea843a890ce3c9a67422497c59988c6fe
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sun Sep 5 18:42:00 2021 +0700
+
+    client
+
+commit f0a6b2d8c858a9afe9656d897690e13e763e5628
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sun Sep 5 17:55:55 2021 +0700
+
+    client
+
+commit 2f436f91a243e6480953b0b6b8dc0cd681a9ee9d
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sun Sep 5 10:18:23 2021 +0700
+
+    server
+
+commit 434306e3b8edff0d7002fd6bc227d07439829138
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sun Sep 5 00:17:13 2021 +0700
+
+    server
+
+commit a83544561fb257c8a71e66fbe435acf3a70a7a4c
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 15:51:12 2021 +0700
+
+    test
+
+commit 784246b498c539c746180a3c7cc42c8f4fa2e156
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 15:15:13 2021 +0700
+
+    test
+
+commit 2ff57b03b011a8178e7e77d5c9abe5cd7cfa37c5
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 14:59:43 2021 +0700
+
+    test
+
+commit c87259bf14c437f468029744e9931d8c39a96dcf
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 14:45:35 2021 +0700
+
+    test
+
+commit 1890bfb350b0a94bb825bbbad12584a553facf45
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 14:37:41 2021 +0700
+
+    test
+
+commit fa6e37153c75741da1cd021b5b549fe01563c191
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 14:36:27 2021 +0700
+
+    test
+
+commit b2b5896d2fbf97935679f288ac930f307b0f3375
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 13:05:19 2021 +0700
+
+    test
+
+commit a94b1d61aef67348fcc9b306a065c2c2def03f29
+Author: giahuy102 <ghuy102@gmail.com>
+Date:   Sat Sep 4 13:00:27 2021 +0700
+
+    first commit
