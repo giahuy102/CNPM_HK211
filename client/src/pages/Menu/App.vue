@@ -1,7 +1,7 @@
 <template>
   <div class="b-container fluid" id="app">
     <b-row>
-      <b-col cols="9">
+      <b-col cols="8">
         <top-nav-bar/>  
         <b-row align-h="center">
           <b-col cols="11">
@@ -46,27 +46,35 @@
 
       </b-col>
       <!-- use d-flex flex-column for make scroll bar without setting predefined-height -->
-      <b-col id="side-bar" class="d-flex flex-column" cols="3">
+      <b-col id="side-bar" class="d-flex flex-column" cols="4">
         <b-navbar class="d-flex justify-content-between nav" variant="faded" type="light">
-          <h4>
+          <h4 id="cart-header">
             <i class="fas fa-shopping-cart"></i>
-            <span>Your cart ({{ currentNumberCartItems }})</span>
+            <span>Your cart ({{ currentNumberInCart() }})</span>
           </h4>
-          <span>DINE IN</span>
+          <span id="dine-in" :class="{dine_in_active: isDineIn}" @click="isDineIn = !isDineIn">DINE IN</span>
 
         </b-navbar>
+
         <div id="list-cart">
-          <cart-item
+          <cart-item 
+            v-on:delete-cart-item="deleteCartItem"
             v-for="(food, index) in foodsInCart"
             :key="index"
             v-bind:food-in-cart="food"
             v-bind:index="index"
           />
         </div>
+        <p class="d-flex justify-content-between" id="total">
+          <span>Total</span>
+          <span>${{ getTotalPrice() }}</span>
+        </p>
+        <a id="payment">PAYMENT</a>
+
 
       </b-col> 
     </b-row>
-    <food-item-modal/>
+    <food-item-modal v-on:process-add-cart-item="processAddCartItem"/>
 
 
 
@@ -116,6 +124,7 @@ export default {
       foodsOfCurrentCategory: [],
       currentNumberCartItems: 0,
       foodsInCart: [],
+      isDineIn: false
 
     }
   },
@@ -160,6 +169,7 @@ export default {
         this.foods.forEach(element => {
           this.$set(element, 'isInCart', false); //set new attribute of object vuejs
           this.$set(element, 'numberInCart', 0);
+          this.$set(element, 'numberInModal', 1);
         })
         console.log(this.foods[0].isInCart);
         this.numberOfFoods = this.foods.length;
@@ -181,12 +191,35 @@ export default {
     showNext() {
       this.$refs.carousel.next()
     },
-    processAddCartItem(index) {
-      this.currentNumberCartItems++;
+    processAddCartItem(index, quality) {
+      
       if (!this.foodsOfCurrentCategory[index].isInCart) {
+        this.currentNumberCartItems += quality;
         this.foodsOfCurrentCategory[index].isInCart = true;
+        this.foodsOfCurrentCategory[index].numberInCart = quality;
         this.foodsInCart.push(this.foodsOfCurrentCategory[index]);
         console.log(this.foodsOfCurrentCategory[index].isInCart);
+      }
+    },
+    currentNumberInCart() {
+      let count = 0;
+      for (let i = 0; i < this.foods.length; i++) {
+        count += this.foods[i].numberInCart;
+      }
+      return count;
+    },
+    getTotalPrice() {
+      let price = 0
+      for (let i = 0; i < this.foods.length; i++) {
+        price += this.foods[i].numberInCart * this.foods[i].food_price;
+      }
+      return price;
+    },
+    deleteCartItem(food_id) {
+      for (let i = 0; i < this.foodsInCart.length; i++) {
+        if(this.foodsInCart[i].food_id == food_id) {
+          this.foodsInCart.splice(i, 1);
+        } 
       }
     }
   }, 
@@ -255,10 +288,68 @@ button.slick-next:before {
   
   /* for Firefox */
   min-height: 0;
+  height: 80%;
 }
 
 
 #my-modal {
   top: 25%;
+}
+
+#total span:first-child {
+  color: rgba(41, 38, 38, 0.685);
+  font-weight: 600;
+  font-size: 26px;
+}
+
+#total span:last-child {
+  color: red;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+#payment {
+  background-color: red;
+  padding: 22px;
+  text-align: center;
+  color: white;
+  font-weight: 700;
+  font-size: 23px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+#payment:hover {
+  background-color: rgb(122, 7, 7);
+}
+
+#cart-header {
+  color: red;
+  font-weight: 600; 
+}
+
+#cart-header span {
+  margin-left: 10px;
+}
+
+#dine-in {
+  font-size: 23px;
+  font-weight: 600;
+  color: rgb(9, 9, 85);
+  cursor: pointer;
+}
+
+.dine_in_active {
+  padding: 7px 10px;
+  color: white !important;
+  background-color: rgb(9, 9, 85);
+  border-radius: 30px;
+}
+
+
+#menu-foods h2 {
+  font-weight: 600;
+  margin-left: 7px;
 }
 </style>

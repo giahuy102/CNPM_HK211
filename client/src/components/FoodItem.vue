@@ -10,7 +10,7 @@
             </h5>
             <p class="card-text d-flex justify-content-between align-items-center">
                 <span class="content">{{ "$" + foodItem.food_price }}</span>
-                <span id="cart-icon" class="fa-stack fa-1x content" @click="processAddCartItem" @click.stop>
+                <span id="cart-icon" class="fa-stack fa-1x" @click="processAddCartItem" @click.stop v-bind:class="{ active: !foodItem.isInCart }">
                     <i class="fa fa-square fa-stack-2x icon-b"></i>
                     <i class="fas fa-shopping-cart fa-stack-1x fa-inverse icon-a"></i>
                 </span>
@@ -29,10 +29,11 @@ export default {
     props: ["index", "foodItem"],
     methods: {
         processAddCartItem() {
-            this.$emit("process-add-cart-item", this.index);
+            if (this.foodItem.numberInModal == 0) this.foodItem.numberInModal = 1;
+            this.$emit("process-add-cart-item", this.index, this.foodItem.numberInModal);
         },
         processDisplayModal() {
-            this.$root.$emit("process-display-modal", this.foodItem);
+            this.$root.$emit("process-display-modal", this.foodItem, this.index);
         }
     }
 }
@@ -60,6 +61,19 @@ export default {
     font-size: 18px;
 }
 
+#cart-icon {
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.active {
+    color: red;
+}
+
+.active:hover {
+    color: rgb(223, 33, 33);
+}
+
 .card-title span:first-child {
     color: red;
     font-weight: 700;
@@ -69,13 +83,13 @@ export default {
     font-weight: 900;
 }
 
-#cart-icon:hover {
-    color: rgb(168, 2, 2);
-}
+
 
 img {
     display: inline-block;
     height: 80%;
     border-radius: 5%;
 }
+
+
 </style>
