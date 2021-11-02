@@ -7,7 +7,10 @@
                     <i class="fa fa-square fa-stack-2x icon-b"></i>
                     <i class="fa fa-home fa-stack-1x fa-inverse icon-a"></i>
                 </span>
+
                 <span>Back to home</span>
+                
+                
             </a>
         </b-navbar>
     </div>
@@ -30,6 +33,7 @@ a {
 }
 
 .icon-b {
+    /* font-size: 20px; */
     font-size: 20px;
 }
 

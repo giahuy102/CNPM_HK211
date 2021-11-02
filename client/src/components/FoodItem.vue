@@ -26,15 +26,18 @@ export default {
 
         }
     },
-    props: ["index", "foodItem"],
     methods: {
         processAddCartItem() {
             this.$emit("process-add-cart-item", this.index);
         },
+
+        
         processDisplayModal() {
             this.$root.$emit("process-display-modal", this.foodItem);
         }
-    }
+    },
+
+    props: ["index", "foodItem"],
 }
 </script>
 
