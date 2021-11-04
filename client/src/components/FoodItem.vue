@@ -9,8 +9,8 @@
                 <span>{{ foodItem.food_name }}</span>
             </h5>
             <p class="card-text d-flex justify-content-between align-items-center">
-                <span class="content">{{ foodItem.food_price }}</span>
-                <span class="fa-stack fa-1x content" @click="processAddCartItem" @click.stop>
+                <span class="content">{{ "$" + foodItem.food_price }}</span>
+                <span id="cart-icon" class="fa-stack fa-1x content" @click="processAddCartItem" @click.stop>
                     <i class="fa fa-square fa-stack-2x icon-b"></i>
                     <i class="fas fa-shopping-cart fa-stack-1x fa-inverse icon-a"></i>
                 </span>
@@ -56,8 +56,22 @@ export default {
 
 .content {
     color: red; 
+    font-weight: 900;
+    font-size: 18px;
 }
 
+.card-title span:first-child {
+    color: red;
+    font-weight: 700;
+}
+
+.card-title span:last-child {
+    font-weight: 900;
+}
+
+#cart-icon:hover {
+    color: rgb(168, 2, 2);
+}
 
 img {
     display: inline-block;

@@ -56,6 +56,7 @@ export default {
 }
 .card-title {
     margin: 1px auto 1px auto;
+    font-weight: 900;
 }
 
 img {
