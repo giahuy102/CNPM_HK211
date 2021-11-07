@@ -32,11 +32,10 @@
                     <span>{{ index + 1 + ". " }}</span>
                     <span>{{ foodInCart.food_name }}</span>
                 </h3>            
-                <ul>
-                    <li>fsfsf</li>
-                    <li>fsfsf</li>
-                    <li>fsfsf</li>
-                </ul>
+                <div class="extra-food" v-for="(extraFood, index) in foodInCart.extraFoods"
+                    :key="index"
+                
+                >{{ extraFood }}</div>
 
                 <div class="d-flex">
                     <!-- <div class="control-amount">
@@ -95,6 +94,8 @@ export default {
             this.foodInCart.isInCart = false;
             this.foodInCart.numberInCart = 0;
             this.foodInCart.numberInModal = 0;
+            this.foodInCart.extraFoods = [];
+            this.foodInCart.extraFoodStates = [];
             this.$emit('delete-cart-item', this.foodInCart.food_id);
         }
     },
@@ -188,5 +189,12 @@ h3 span:last-child {
     right: 0;
     top: 0;
 
+}
+
+
+.extra-food {
+    font-size: 700;
+    color: rgb(61, 57, 102);
+    font-size: 25;
 }
 </style>

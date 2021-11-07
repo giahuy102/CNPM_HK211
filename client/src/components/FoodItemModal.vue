@@ -69,17 +69,17 @@
 
                 <form action="" class="d-flex justify-content-between">
                   <div>
-                    <input type="checkbox" id="option1" name="option1" value="Vegetable">
+                    <input type="checkbox" id="option1" name="option1" value="Vegetable" :checked="foodItem.extraFoodStates[0]" v-model="foodItem.extraFoods" @click="foodItem.extraFoodStates[0] = !foodItem.extraFoodStates[0]">
                     <label for="option1">Vegetable</label><br>
                   </div>
 
                   <div>
-                    <input type="checkbox" id="option2" name="option2" value="Wine">
+                    <input type="checkbox" id="option2" name="option2" value="Wine" :checked="foodItem.extraFoodStates[1]" v-model="foodItem.extraFoods" @click="foodItem.extraFoodStates[1] = !foodItem.extraFoodStates[1]">
                     <label for="option2">Wine</label><br>
                   </div>
 
                   <div>
-                    <input type="checkbox" id="option3" name="option3" value="juice">
+                    <input type="checkbox" id="option3" name="option3" value="Juice" :checked="foodItem.extraFoodStates[2]" v-model="foodItem.extraFoods" @click="foodItem.extraFoodStates[2] = !foodItem.extraFoodStates[2]">
                     <label for="option3">Orange juice</label><br><br>
                   </div>
 
@@ -101,9 +101,9 @@
 export default {
   data() {
     return {
-      foodItem: {image_name: "coca.jpeg"},
+      foodItem: {image_name: "coca.jpeg", extraFoodStates: [false, false, false]},
       // quality: 0,
-      index: 0
+      index: 0,
     }
   },
   methods: {

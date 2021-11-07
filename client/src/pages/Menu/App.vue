@@ -170,6 +170,8 @@ export default {
           this.$set(element, 'isInCart', false); //set new attribute of object vuejs
           this.$set(element, 'numberInCart', 0);
           this.$set(element, 'numberInModal', 1);
+          this.$set(element, 'extraFoods', []);
+          this.$set(element, 'extraFoodStates', [false, false, false]);
         })
         console.log(this.foods[0].isInCart);
         this.numberOfFoods = this.foods.length;
