@@ -7,6 +7,9 @@
 
         </template>
 
+
+        
+
         <div class="row">
           <div id="left-modal" class="col-3">
             <img :src="require(`../assets/foods/${foodItem.image_name}`)" alt="">
@@ -14,37 +17,43 @@
           <div id="right-modal" class="col">
               <div class="d-flex justify-content-between flex-column">
                   <h4>Unit price</h4>
-                  <p>{{ "$" + foodItem.food_price }}</p>
+                  <p id="price-modal">{{ "$" + foodItem.food_price }}</p>
               </div>
 
               <div class="d-flex justify-content-between">
                   <h4>Quantity</h4>
                   <div class="control-amount">
-                      <i class="far fa-minus-square decrease"></i>
-                      {{ numberInCart }}
-                      <i class="far fa-plus-square increase"></i>    
+                    <button @click="decrease">
+                      <i class="far fa-minus-square" :class="{ decrease: !foodItem.isInCart, passive_amount: foodItem.isInCart }"></i>
+                    </button>
+                    <span id="number-in-modal">{{ foodItem.numberInModal }}</span>
+                    <button @click="increase">
+                      <i class="far fa-plus-square" :class="{ increase: !foodItem.isInCart, passive_amount: foodItem.isInCart }"></i> 
+                    </button>
+                      
+                         
                   </div>
 
 
               </div>
-              <div>
+              <div id="list-container">
 
-                <li>
+                <li class="list-modal">
                   <span>Protein: </span>
                   <span>{{foodItem.protein}}</span>
                 </li>
 
-                <li>
+                <li class="list-modal">
                   <span>Additives: </span>
                   <span>{{foodItem.additives}}</span>
                 </li>
 
-                <li>
+                <li class="list-modal">
                   <span>Baking material: </span>
                   <span>{{foodItem.baking_materials}}</span>
                 </li>
 
-                <li>
+                <li class="list-modal">
                   <span>Food decoration: </span>
                   <span>{{foodItem.food_decoration}}</span>
                 </li>
@@ -77,13 +86,14 @@
                 </form>
 
               </div>
-              <button id="submit-button">
+              <button id="submit-button" @click="processAddCartItem" :class="{ active_submit: !foodItem.isInCart, passive_submit: foodItem.isInCart }">
                 ADD TO CART
               </button>
           </div>
         </div>
 
     </b-modal>
+
     </div>
 </template>
 
@@ -91,7 +101,9 @@
 export default {
   data() {
     return {
-      foodItem: {}
+      foodItem: {image_name: "coca.jpeg"},
+      // quality: 0,
+      index: 0
     }
   },
   methods: {
@@ -106,12 +118,26 @@ export default {
       // when the modal has hidden
       this.$refs['my-modal'].toggle('#toggle-btn');
     },
+    increase() {
+      if (!this.foodItem.isInCart) this.foodItem.numberInModal += 1;
+      console.log(this.foodItem.numberInModal);
+    },
+    decrease() {
+      if (this.foodItem.numberInModal > 1 && !this.foodItem.isInCart) this.foodItem.numberInModal--;
+    },
+    processAddCartItem() {
+        console.log(6);
+        if (!this.foodItem.isInCart) this.toggleModal();
+        this.$emit("process-add-cart-item", this.index, this.foodItem.numberInModal);
+        
+    },
   },
 
   mounted() {
-      this.$root.$on("process-display-modal", foodItem => {
+      this.$root.$on("process-display-modal", (foodItem, index) => {
         this.foodItem = foodItem;
         this.showModal();
+        this.index = index;
         console.log(foodItem);
       })
   }
@@ -145,23 +171,29 @@ button {
 
 
 .decrease {
-  color: rgb(23, 96, 145);
+  color: rgb(0, 153, 255);
   font-size: 33px;
   cursor: pointer;
 }
 
 .increase {
-  color: rgb(173, 66, 66);
+  color: rgb(255, 0, 0);
   font-size:33px;
   cursor: pointer;
 }
 
 .decrease:hover {
-  color: rgb(37, 129, 182);
+  
+  color: rgb(10, 61, 202);
 }
 
 .increase:hover {
-  color: rgb(250, 6, 6);
+  color: rgb(168, 2, 2);
+}
+
+.passive_amount {
+  font-size:33px;
+  color: rgb(167, 136, 136);
 }
 
 input[type=checkbox] {
@@ -176,14 +208,53 @@ form label {
 
 #submit-button {
   width: 100%;
-  color: white;
-  background-color: red;
+  /* color: white;
+  background-color: red; */
   border-radius: 50px;
   height: 35px;
   font-weight: 900;
+  
 }
 
-#submit-button:hover {
+.active_submit {
+  color: white;
+  background-color: red;
+  
+}
+
+.passive_submit {
+  background-color: rgb(167, 136, 136);
+}
+
+.active_submit:hover {
   background-color: crimson;
+}
+
+#price-modal {
+  color: red;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.list-modal span:first-child {
+  color: rgb(49, 47, 47);
+  font-weight: 700;
+}
+
+.list-modal span:last-child {
+  color: rgb(104, 103, 103);
+  font-weight: 700;
+}
+
+
+#list-container {
+  margin-bottom: 30px;
+}
+
+#number-in-modal {
+  color: rgb(40, 40, 46);
+  font-weight: 600;
+  font-size: 30px;
+  margin: auto 15px;
 }
 </style>

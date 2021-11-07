@@ -19,6 +19,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
 
+import { ModalPlugin } from 'bootstrap-vue'
+Vue.use(ModalPlugin)
+
+
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
