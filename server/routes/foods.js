@@ -2,14 +2,13 @@ const express = require("express");
 const router = express.Router();
 const foods = require("../services/foods");
 
-
+// api to for get foods info
 router.get("/api/foods", (req, res) => {
     try {
         foods.getAllFoods(function(foods) {
             res.json(foods);
         })
-    }
-    catch (err) {
+    } catch (err) {
         console.error(`Error while getting foods data `, err.message);
         next(err);
     }
@@ -17,4 +16,3 @@ router.get("/api/foods", (req, res) => {
 })
 
 module.exports = router;
-

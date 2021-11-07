@@ -2,14 +2,13 @@ const express = require("express");
 const router = express.Router();
 const foods = require("../services/food_categories");
 
-
+// api for get food categories
 router.get("/api/food_categories", (req, res) => {
     try {
         foods.getAllFoodCategories(function(foodCategories) {
             res.json(foodCategories);
         })
-    }
-    catch (err) {
+    } catch (err) {
         console.error(`Error while getting food categories data `, err.message);
         next(err);
     }
