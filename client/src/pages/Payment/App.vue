@@ -28,7 +28,7 @@
                     <div id="item-inc">inc. VAT</div>
                 </div>
             </div>
-            <div id="credit">
+            <div id="credit">   <!-- done payment -->
                 <div id="credit-above">
                     <div id="credit-above-noti">
                         Checkout is running in test mode. Click here for test data.
