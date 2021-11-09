@@ -1,11 +1,11 @@
 <template>
   <div class="b-container fluid" id="app">
     <b-row>
-      <b-col cols="8">
+      <b-col cols="8" class="left-side">
         <top-nav-bar/>  
         <b-row align-h="center">
           <b-col cols="11">
-            <VueSlickCarousel v-bind="settings" v-if="numberOfFoodCategories > 0">
+            <!-- <VueSlickCarousel v-bind="settings" v-if="numberOfFoodCategories > 0">
               <div 
                 class="d-flex justify-content-center"
                 v-for="foodCategory in foodCategories"
@@ -17,13 +17,41 @@
                   v-bind:source-img="foodCategory.image_name"
                 />
               </div>
-              <!-- <template #nextArrow="arrowOption">
-                <div class="custom-arrow">
-                  {{ arrowOption.currentSlide }}/{{ arrowOption.slideCount }}
-                </div>
-              </template> -->
 
-            </VueSlickCarousel>
+
+            </VueSlickCarousel> -->
+
+
+
+
+            <Flicking :options="{ circular: true }" :plugins="plugins">
+                <!-- <div class="card-panel"><img src="/images/harry-potter-1.png" alt=""></div>
+                <div class="card-panel"><img src="/images/harry-potter-1.png" alt=""></div>
+                <div class="card-panel"><img src="/images/harry-potter-1.png" alt=""></div> -->
+                <!-- <div  v-for="category in categories" :key="category.cid" class="card-panel">
+                    <a :href="'/category/' + category.cid">
+                        <img :src="'/images/' + category.category_image" alt="">
+                    </a>
+                    
+                </div> -->
+                <div 
+                  class="d-flex justify-content-center adjust-card-width"
+                  v-for="foodCategory in foodCategories"
+                  :key="foodCategory.category_id"
+                  @click="setFoodAndCategoryState(foodCategory.category_id, foodCategory.category_name)"
+                > 
+                  <category-item
+                    v-bind:category-name="foodCategory.category_name"
+                    v-bind:source-img="foodCategory.image_name"
+                  />
+                </div>
+                <span slot="viewport" class="flicking-arrow-prev"></span>
+                <span slot="viewport" class="flicking-arrow-next"></span>
+            </Flicking>  
+
+
+
+
           </b-col>
         </b-row>
 
@@ -57,13 +85,14 @@
         </b-navbar>
 
         <div id="list-cart">
-          <cart-item 
-            v-on:delete-cart-item="deleteCartItem"
-            v-for="(food, index) in foodsInCart"
-            :key="index"
-            v-bind:food-in-cart="food"
-            v-bind:index="index"
-          />
+            <cart-item 
+              v-on:delete-cart-item="deleteCartItem"
+              v-for="(food, index) in foodsInCart"
+              :key="index"
+              v-bind:food-in-cart="food"
+              v-bind:index="index"
+            />
+
         </div>
         <p class="d-flex justify-content-between" id="total">
           <span>Total</span>
@@ -89,8 +118,13 @@ import FoodItem from "../../components/FoodItem.vue";
 import CartItem from "../../components/CartItem.vue";
 import FoodItemModal from "../../components/FoodItemModal.vue";
 
-import VueSlickCarousel from 'vue-slick-carousel'
+// import VueSlickCarousel from 'vue-slick-carousel'
 import { getAllFoods, getAllFoodCategories } from "../../services/FoodServices";
+
+
+
+import { Arrow } from "@egjs/flicking-plugins";
+import "@egjs/flicking-plugins/dist/arrow.css";
 
 
 // import Vue from 'vue'; 
@@ -103,7 +137,6 @@ export default {
     CategoryItem,
     FoodItem,
     CartItem,
-    VueSlickCarousel,
     FoodItemModal
   },
   data() {
@@ -124,7 +157,8 @@ export default {
       foodsOfCurrentCategory: [],
       currentNumberCartItems: 0,
       foodsInCart: [],
-      isDineIn: false
+      isDineIn: false,
+      plugins: [new Arrow()]
 
     }
   },
@@ -281,6 +315,7 @@ button.slick-next:before {
   height: 100vh;
   position: fixed;
   right: 0;
+  background-color: rgba(255, 235, 230, 0.74);
 
 }
 
@@ -353,5 +388,17 @@ button.slick-next:before {
 #menu-foods h2 {
   font-weight: 600;
   margin-left: 7px;
+}
+
+
+.adjust-card-width {
+  width: 20%;
+  padding: 0 5px;
+}
+
+
+.left-side {
+  background-color: #ebebffe1;
+  height: 100vh;
 }
 </style>

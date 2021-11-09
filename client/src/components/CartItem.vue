@@ -1,5 +1,8 @@
 <template>
+<transition name="cart" mode="out-in">
     <div class="custom-card d-flex flex-row">
+        
+
         <button id="delete" type="button" class="btn-close" aria-label="Close" @click="deleteCartItem"></button>
         <div class="container-img d-flex align-items-center">
             <img :src="require(`../assets/foods/${foodInCart.image_name}`)"  alt="Card image cap">
@@ -70,8 +73,12 @@
 
 
         </div>
+
+        
+
         
     </div>    
+</transition>  
 </template>
 
 <script>
@@ -196,5 +203,15 @@ h3 span:last-child {
     font-size: 700;
     color: rgb(61, 57, 102);
     font-size: 25;
+}
+
+
+
+
+.cart-enter-active, .cart-leave-active {
+  transition: opacity .4s;
+}
+.cart-enter, .cart-leave-to { /* .fade-leave-active below version 2.1.8 */ 
+  opacity: 0;
 }
 </style>

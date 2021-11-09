@@ -24,8 +24,8 @@ export default {
 
 <style scoped>
 .card {
-    width: 92%;
-    height: 140px;
+    width: 100%;
+    height: 150px;
     border-radius: 15%;
     transition: all 0.5s;
     cursor: pointer;
@@ -48,7 +48,7 @@ export default {
 }
 
 .container-img {
-    height: 100px;
+    height: 120px;
 }
 
 .card-body {
