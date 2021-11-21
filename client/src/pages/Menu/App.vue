@@ -98,7 +98,7 @@
           <span>Total</span>
           <span>${{ getTotalPrice() }}</span>
         </p>
-        <a id="payment">PAYMENT</a>
+        <a id="payment" href="payment.html">PAYMENT</a>
 
 
       </b-col> 
@@ -271,6 +271,8 @@ html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
+
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
